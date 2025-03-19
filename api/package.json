@@ -1,0 +1,15 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "API para a aplicação infnet-guia",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "Pedro Valladares",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.2",
+    "mysql": "^2.18.1"
+  }
+}

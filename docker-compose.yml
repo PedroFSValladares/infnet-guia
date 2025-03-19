@@ -1,0 +1,44 @@
+services:
+  app-frontend:
+    container_name: infnet-guia-frontend
+    restart: unless-stopped
+    build: ./frontend
+    networks:
+      - frontend
+    ports:
+      - 3000:3000
+    command: npm run start
+
+  app-backend:
+    container_name: infnet-guia-backend
+    restart: unless-stopped
+    build: ./api
+    networks:
+      - frontend
+      - backend
+    env_file:
+      - environment/backend.env
+    depends_on:
+      database:
+        condition: service_started
+    command: node index.js
+
+  database:
+    container_name: database
+    image: mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: true
+    networks:
+      - backend
+    expose:
+      - 3306
+    volumes: 
+      - infnet-guia-mysql-data:/home/mysql
+
+networks:
+  frontend:
+  backend:
+
+volumes:
+  infnet-guia-mysql-data:
