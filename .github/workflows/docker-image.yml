@@ -16,7 +16,7 @@ jobs:
       run: docker build . --file Dockerfile --tag pedrofsvalladares/infnet-guia-prod:$(date +%s)
     
     - name: Login on Docker
-      run: docker login -u pedrofsvalladares -p $DOCKER_TOKEN
+      run: docker login -u pedrofsvalladares --password $DOCKER_TOKEN
       env:
         DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
         
