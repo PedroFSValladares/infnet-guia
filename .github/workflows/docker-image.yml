@@ -22,4 +22,4 @@ jobs:
         password: ${{ secrets.DOCKER_TOKEN }}
         
     - name: Pull image to Hub
-      run: docker pull pedrofsvalladares/infnet-guia-prod
+      run: docker pull pedrofsvalladares/infnet-guia-prod:latest
