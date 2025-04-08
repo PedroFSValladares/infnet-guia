@@ -13,7 +13,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag pedrofsvalladares/infnet-guia-prod:$(date +%s)
+      run: docker build . --file Dockerfile --tag pedrofsvalladares/infnet-guia-prod:latest
     
     - name: Login on Docker
       uses: docker/login-action@v3
