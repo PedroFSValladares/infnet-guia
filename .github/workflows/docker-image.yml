@@ -1,0 +1,24 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag pedrofsvalladares/infnet-guia-prod:$(date +%s)
+    
+    - name: Login on Docker
+      run: docker login -u pedrofsvalladares -p $(secrets.DOCKER_TOKEN)
+
+    - name: Pull image to Hub
+      run: docker pull -t pedrofsvalladares/infnet-guia-prod
