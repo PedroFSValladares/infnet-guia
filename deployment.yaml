@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: infnet-guia
+  labels:
+    app: infnet-guia
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: infnet-guia
+  template:
+    metadata:
+     labels: 
+      app: infnet-guia
+    spec:
+      containers:
+      - name: infnet-guia
+        image: pedrofsvalladares/infnet-guia:latest
+        ports:
+          - containerPort: 3000
+        env:
+          - name: NODE_ENV
+            value: "production"
+        livenessProbe:
+          httpGet:
+            path: /api/health
+            port: 3000
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          failureThreshold: 3
+        readinessProbe:
+          httpGet:
+            path: /api/ready
+            port: 3000
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          failureThreshold: 3

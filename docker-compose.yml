@@ -1,0 +1,9 @@
+services:
+  app:
+    container_name: infnet-guia-app
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: dockerfile
+    ports:
+      - 3000:3000
