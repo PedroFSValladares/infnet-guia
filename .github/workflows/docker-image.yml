@@ -3,8 +3,6 @@ name: Docker Image CI
 on:
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
 
 jobs:
 
@@ -18,7 +16,9 @@ jobs:
       run: docker build . --file Dockerfile --tag pedrofsvalladares/infnet-guia-prod:$(date +%s)
     
     - name: Login on Docker
-      run: docker login -u pedrofsvalladares -p $(secrets.DOCKER_TOKEN)
-
+      run: docker login -u pedrofsvalladares -p $DOCKER_TOKEN
+      env:
+        DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
+        
     - name: Pull image to Hub
       run: docker pull -t pedrofsvalladares/infnet-guia-prod
