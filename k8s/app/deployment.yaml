@@ -11,12 +11,16 @@ spec:
       app: infnet-guia
   template:
     metadata:
-     labels: 
-      app: infnet-guia
+      labels: 
+        app: infnet-guia
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "3000"
+        prometheus.io/path: "/api/metrics"
     spec:
       containers:
       - name: infnet-guia
-        image: pedrofsvalladares/infnet-guia:latest
+        image: pedrofsvalladares/infnet-guia:1.1.0
         ports:
           - containerPort: 3000
         env:
