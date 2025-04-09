@@ -14,10 +14,12 @@ jobs:
 
     steps:
       - name: Setup pnpm
-        run: corepack enable pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          node-version: ${{ matrix.nodeverion }}
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install
 
       - name: Build app
         run: pnpm run build
