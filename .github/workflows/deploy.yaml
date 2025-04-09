@@ -14,13 +14,13 @@ jobs:
 
     steps:
       - name: Setup pnpm
-      - run: corepack enable pnpm
+        run: corepack enable pnpm
 
       - name: Install dependencies
-      - run: pnpm install
+        run: pnpm install
 
       - name: Build app
-      - run: pnpm run build
+        run: pnpm run build
 
       - name: Build app container
-      - run: docker build -t pedrofsvalladares/infnet-guia-prod .
+        run: docker build -t pedrofsvalladares/infnet-guia-prod .
