@@ -28,7 +28,7 @@ jobs:
         run: pnpm run build
 
       - name: Build app container
-        run: docker build -t pedrofsvalladares/infnet-guia-prod .
+        run: docker build -t pedrofsvalladares/infnet-guia-prod:latest .
 
       - name: Login on Docker
         run: echo "docker login -u $DOCKER_USERNAME --password-stdin $DOCKER_TOKEN"
@@ -37,4 +37,4 @@ jobs:
           DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
 
       - name: Push image on Docker
-        run: docker push pedrofsvalladares/infnet-guia-prod
+        run: docker push pedrofsvalladares/infnet-guia-prod:latest
