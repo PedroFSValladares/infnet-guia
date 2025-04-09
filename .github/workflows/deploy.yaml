@@ -1,0 +1,26 @@
+name: Application Deploy
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [ 22.x ]
+
+    steps:
+      - name: Setup pnpm
+      - run: corepack enable pnpm
+
+      - name: Install dependencies
+      - run: pnpm install
+
+      - name: Build app
+      - run: pnpm run build
+
+      - name: Build app container
+      - run: docker build -t pedrofsvalladares/infnet-guia-prod .
